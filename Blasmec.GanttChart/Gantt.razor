@@ -1,0 +1,31 @@
+﻿@using Microsoft.JSInterop
+
+
+
+@*<link rel="stylesheet" href="./_content/Blasmec.GanttChart/css/dhtmlxgantt.css" type="text/css">*@
+
+<button
+    class="btn btn-light"
+    style="margin-bottom: 5px;"
+    @onclick="@(() => module.InvokeVoidAsync("expand"))">
+    Schermo Intero
+</button>
+<link rel="stylesheet" href="./_content/Blasmec.GanttChart/css/@(theme).css" type="text/css">
+<select @bind="theme">
+    @foreach (var p in typeof(GanttChartTheme).GetProperties())
+    {
+        <option value="@p.GetValue(null)">@p.Name</option>
+    }
+
+</select>
+<div id="gantt_here" style="@Style"></div>
+
+
+@code
+{
+    [Parameter]
+    public string Style { get; set; }
+
+
+    string theme = GanttChartTheme.Default;
+}

@@ -1,0 +1,20 @@
+﻿
+
+@typeparam TItem
+
+
+
+<Autocomplete 
+    Data="@data"
+    TextField="@(TextField)"
+    ValueField="@(item => item)"
+    SelectedValue="@(SelectedItem)"
+    SelectedValueChanged="@(async o => { 
+                                           await _updateSelectedItem((TItem) o); await InvokeAsync(StateHasChanged); })"
+    SearchChanged="@(_onSearch)"
+              
+    Placeholder="@Placeholder"
+    Filter="AutocompleteFilter.Contains"
+    DelayTextOnKeyPress="true"
+    DelayTextOnKeyPressInterval="1000"
+/>
